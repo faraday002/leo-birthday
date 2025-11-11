@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 body {
-  background-color: #ffffff;
+  background-color: #0a0a0a;
   margin: 0;
   padding: 0;
 }
@@ -38,6 +38,28 @@ body {
   }
 }
 
+@keyframes confetti {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .animate-float {
   animation: float linear infinite;
 }
@@ -48,4 +70,12 @@ body {
 
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-in;
+}
+
+.animate-confetti {
+  animation: confetti linear forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.5s ease-out;
 }
