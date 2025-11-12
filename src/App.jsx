@@ -223,11 +223,11 @@ export default function BirthdayCountdown() {
                       style={{animationDelay: `${index * 0.1}s`}}
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
-                      <div className="relative bg-gradient-to-br from-slate-900 to-red-950 rounded-2xl p-6 border border-orange-500/30 shadow-xl transform hover:scale-105 transition-all duration-300">
-                        <div className="text-6xl md:text-7xl font-black bg-gradient-to-br from-orange-400 to-red-400 bg-clip-text text-transparent mb-2">
+                      <div className="relative bg-gradient-to-br from-slate-900 to-red-950 rounded-2xl p-4 md:p-6 border border-orange-500/30 shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-br from-orange-400 to-red-400 bg-clip-text text-transparent mb-1 md:mb-2 leading-none">
                           {String(value).padStart(2, '0')}
                         </div>
-                        <div className="text-orange-300 uppercase text-sm tracking-widest font-semibold">
+                        <div className="text-orange-300 uppercase text-xs sm:text-sm tracking-widest font-semibold">
                           {unit}
                         </div>
                       </div>
