@@ -19,6 +19,7 @@ export default function BirthdayCountdown() {
   const [isBirthday, setIsBirthday] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
   const [audioPlaying, setAudioPlaying] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const audioRef = React.useRef(null);
 
   // Confetti effect when birthday hits
@@ -60,7 +61,7 @@ export default function BirthdayCountdown() {
   useEffect(() => {
     setMounted(true);
     
-    const targetDate = new Date('2024-11-18T00:00:00');
+    const targetDate = new Date('2025-11-18T00:00:00');
     
     const calculateTimeLeft = () => {
       const now = new Date();
@@ -89,9 +90,9 @@ export default function BirthdayCountdown() {
   const phrases = [
     "The 77th Director of the Wangsheng Funeral Parlor wishes Leo a happy birthday!",
     "O-ya? O-ya-ya-ya? a birthday boy ? hmmmmmmm..., now how could it be ? 👀",
-    "Aiya~ Leo's getting older! Time to prepare a 50% off coupon! Just kidding~ 🔥",
+    "Aiya~ Leo's getting older! Time to prepare a 50% off coupon! Just kidding~",
     "May your birthday be as lively as Hu Tao's spirit!",
-    "Leo, you're aging like fine wine... or should I say, like a well-preserved... never mind! 🦋"
+    "One happy Leo, Two happy Leos, Three Happy Leos !!! 🦋"
   ];
 
   const [currentPhrase, setCurrentPhrase] = useState(0);
@@ -116,6 +117,14 @@ export default function BirthdayCountdown() {
         audioRef.current.play();
         setAudioPlaying(true);
       }
+    }
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    if (audioRef.current && audioPlaying) {
+      audioRef.current.pause();
+      setAudioPlaying(false);
     }
   };
 
@@ -249,9 +258,17 @@ export default function BirthdayCountdown() {
             )}
 
             {/* Birthday popup modal */}
-            {isBirthday && !showVideo && (
+            {isBirthday && showModal && (
               <div className="fixed inset-0 flex items-center justify-center z-50 p-4">
-                <div className="bg-gradient-to-br from-slate-900 via-red-950 to-orange-950 rounded-3xl p-8 max-w-2xl w-full border-4 border-orange-400 shadow-2xl animate-scaleIn">
+                <div className="bg-gradient-to-br from-slate-900 via-red-950 to-orange-950 rounded-3xl p-8 max-w-2xl w-full border-4 border-orange-400 shadow-2xl animate-scaleIn relative">
+                  {/* Close button */}
+                  <button
+                    onClick={handleCloseModal}
+                    className="absolute top-4 right-4 text-orange-300 hover:text-orange-100 transition-colors text-3xl font-bold w-10 h-10 flex items-center justify-center rounded-full hover:bg-orange-500/20"
+                  >
+                    ✕
+                  </button>
+                  
                   <div className="text-center mb-6">
                     <h3 className="text-4xl font-black bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 bg-clip-text text-transparent mb-4">
                       A Special Message 💝
@@ -309,7 +326,6 @@ export default function BirthdayCountdown() {
                   <div className="absolute inset-0 bg-gradient-to-br from-orange-500/20 to-red-600/20 group-hover:from-orange-500/10 group-hover:to-red-600/10 transition-all duration-300"></div>
                   <div className="absolute inset-0 border-2 border-orange-500/30 group-hover:border-orange-400/60 rounded-xl transition-all duration-300"></div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                    <p className="text-orange-200 font-semibold text-lg">Hu Tao #{i + 1}</p>
                   </div>
                 </div>
               ))}
@@ -324,7 +340,7 @@ export default function BirthdayCountdown() {
                 </div>
               </div>
               <p className="text-orange-300/70 text-base italic">
-                "Surely you're not afraid of ghosts... or birthdays?" - Hu Tao
+               "Balance must be maintained, and yet destinies remain variable. Death has its own rules, and yet is still hard to predict. Remember — no matter where, no matter when, no matter what the reason — one should never poke fun at death. Only once you know and respect death can you truly understand the value of life."
               </p>
             </div>
           </div>
